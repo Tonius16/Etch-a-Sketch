@@ -1,0 +1,88 @@
+html {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+body {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: aliceblue;
+}
+
+.menu {
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.colorText {
+  margin-bottom: -70px;
+}
+
+#colorInput {
+  width: 100px;
+  height: 50px;
+}
+
+.canvasText {
+  margin-bottom: -70px;
+}
+
+.slider {
+  width: 250px;
+  height: 100px;
+}
+
+.erase {
+  width: 200px;
+  height: 100px;
+}
+
+.newCanvas {
+  width: 200px;
+  height: 100px;
+}
+
+.canvasContainer {
+  display: flex;
+  margin-top: 25px;
+  margin-right: 200px;
+  width: 1000px;
+  height: 900px;
+  border: solid black;
+}
+
+.verticalContainer {
+  width: 1000px;
+  height: 900px;
+  display: flex;
+  position: relative;
+}
+
+.horizontalContainer {
+  width: 1000px;
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+.verticalDivs {
+  flex: 1;
+  border: black solid;
+}
+
+.horizontalDivs {
+  flex: 1;
+  border: black solid;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="etch-sketch.css" />
+    <script src="etch-sketch.js" defer></script>
+    <title>Etch-a-Sketch</title>
+  </head>
+  <body>
+    <div class="menu" id="menu">
+      <div class="title" is="title">ETCH-A-SKETCH</div>
+      <h4 class="colorText">Pick A color!</h4>
+      <input id="colorInput" type="color" />
+      <h4 class="canvasText">Chose canvas size</h4>
+      <input
+        type="range"
+        value="16"
+        min="16"
+        max="100"
+        class="slider"
+        id="myRange"
+      />
+      <button class="erase" id="erase">Eraser</button>
+      <button class="newCanvas" id="newCanvas">New Canvas</button>
+    </div>
+    <div class="canvasContainer" id="canvasContainer">
+      <div class="verticalContainer" id="verticalContainer">
+        <div class="horizontalContainer" id="horizontalContainer"></div>
+      </div>
+    </div>
+  </body>
+</html>
