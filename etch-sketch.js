@@ -12,29 +12,45 @@
 
 const colorInput = document.getElementById("colorInput");
 const eraseBttn = document.getElementById("erase");
-const slider = document.getElementById("myRange").value;
+const slider = document.getElementById("myRange");
 const newCanBttn = document.getElementById("newCanvas");
 const canvasContainer = document.getElementById("canvasContainer");
 const horizontalContainer = document.getElementById("horizontalContainer");
 const verticalContainer = document.getElementById("verticalContainer");
+let value = 0;
 
-function generateCanvas() {
-  for (i = 0; i < 100; i++) {
+slider.addEventListener("input", () => {
+  value = slider.value;
+});
+
+slider.addEventListener("mousedown", () => {
+  generateCanvas(value);
+});
+
+function generateCanvas(value) {
+  for (i = 0; i < value; i++) {
     yDiv = document.createElement("div");
     yDiv.className = "verticalDivs";
     verticalContainer.appendChild(yDiv);
     xDiv = document.createElement("div");
     xDiv.className = "horizontalDivs";
     horizontalContainer.appendChild(xDiv);
-    console.log(slider);
+    console.log(value);
   }
 }
 
-function updateCanvas() {}
+function removeCanvas() {
+  yDiv = document.querySelectorAll(".verticalDivs");
+  yDiv.forEach(function (yDiv) {
+    yDiv.remove();
+  });
+  xDiv = document.querySelectorAll(".horizontalDivs");
+  xDiv.forEach(function (xDiv) {
+    xDiv.remove();
+  });
 
-function removeOldCanvas() {
-  yDiv.remove();
-  xDiv.remove();
+  console.log(xDiv);
 }
-
-generateCanvas();
+slider.addEventListener("mouseup", () => {
+  removeCanvas();
+});
