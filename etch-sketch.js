@@ -33,18 +33,37 @@ function generateCanvas(value) {
   }
 }
 
-let colorValue = colorPicker.value;
+let colorValue = "#00000";
 
-function draw(colorValue) {
+function draw() {
+  colorValue = colorPicker.value;
+  yDiv = document.querySelectorAll(".verticalDivs");
+  yDiv.forEach(function (yDiv) {
+    yDiv.addEventListener("click", () => {
+      drawing(colorValue);
+    });
+  });
+}
+
+function drawing(colorValue) {
   colorPicker.addEventListener("input", () => {
     colorValue = colorPicker.value;
   });
   yDiv = document.querySelectorAll(".verticalDivs");
   yDiv.forEach(function (yDiv) {
-    yDiv.addEventListener("mousedown", () => {
+    yDiv.addEventListener("mousemove", () => {
       yDiv.style.backgroundColor = `${colorValue}`;
     });
   });
+  yDiv.forEach(function (yDiv) {
+    yDiv.addEventListener("click", () => {
+      stopColoring();
+    });
+  });
+}
+
+function stopColoring() {
+  canvasContainer.style.pointerEvents = "none";
 }
 
 function removeCanvas() {
@@ -55,7 +74,7 @@ function removeCanvas() {
 }
 
 generateCanvas(value);
-draw(colorValue);
+draw();
 
 slider.addEventListener("mousedown", () => {
   removeCanvas();
@@ -67,7 +86,15 @@ slider.addEventListener("input", () => {
 
 slider.addEventListener("mouseup", () => {
   document.getElementById("colorInput").focus();
+  canvasContainer.style.pointerEvents = "";
   generateCanvas(value);
   colorValue = colorPicker.value;
-  draw(colorValue);
+  draw();
+});
+
+colorPicker.addEventListener("input", () => {
+  canvasContainer.style.pointerEvents = "";
+  colorValue = colorPicker.value;
+  console.log(colorValue);
+  draw();
 });

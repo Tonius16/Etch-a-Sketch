@@ -22,7 +22,7 @@ body {
 }
 
 .menu {
-  margin-left: 260px;
+  margin-left: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +30,7 @@ body {
 }
 
 .colorText {
-  margin-bottom: -70px;
+  margin-bottom: -90px;
 }
 
 #colorInput {
@@ -39,15 +39,15 @@ body {
 }
 
 .canvasText {
-  margin-bottom: -70px;
+  margin-bottom: -100px;
 }
 
 .slider {
   width: 250px;
-  height: 100px;
 }
 
 .erase {
+  margin-top: -20px;
   width: 200px;
   height: 100px;
 }
@@ -55,7 +55,8 @@ body {
 .newCanvas {
   width: 200px;
   height: 100px;
-  margin-bottom: 30px;
+  margin-top: -20px;
+  margin-bottom: 50px;
 }
 
 .canvasContainer {
@@ -66,5 +67,7 @@ body {
   margin-right: 200px;
   width: 95vh;
   height: 95vh;
+  background-color: white;
   border: solid black;
+  position: relative;
 }
