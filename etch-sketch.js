@@ -15,28 +15,36 @@ const eraseBttn = document.getElementById("erase");
 const slider = document.getElementById("myRange");
 const newCanBttn = document.getElementById("newCanvas");
 const canvasContainer = document.getElementById("canvasContainer");
-const horizontalContainer = document.getElementById("horizontalContainer");
 const verticalContainer = document.getElementById("verticalContainer");
-let value = 0;
+const horizontalContainer = document.getElementById("horizontalContainer");
+const colorPicker = document.getElementById("colorInput");
+const body = document.querySelector("body");
 
-slider.addEventListener("input", () => {
-  value = slider.value;
-});
-
-slider.addEventListener("mousedown", () => {
-  generateCanvas(value);
-});
+let value = 16;
 
 function generateCanvas(value) {
-  for (i = 0; i < value; i++) {
+  let doubleValue = value * value;
+  canvasContainer.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
+  canvasContainer.style.gridTemplateRows = `repeat(${value}, 1fr)`;
+  for (let i = 0; i < doubleValue; i++) {
     yDiv = document.createElement("div");
     yDiv.className = "verticalDivs";
-    verticalContainer.appendChild(yDiv);
-    xDiv = document.createElement("div");
-    xDiv.className = "horizontalDivs";
-    horizontalContainer.appendChild(xDiv);
-    console.log(value);
+    canvasContainer.appendChild(yDiv);
   }
+}
+
+let colorValue = colorPicker.value;
+
+function draw(colorValue) {
+  colorPicker.addEventListener("input", () => {
+    colorValue = colorPicker.value;
+  });
+  yDiv = document.querySelectorAll(".verticalDivs");
+  yDiv.forEach(function (yDiv) {
+    yDiv.addEventListener("mousedown", () => {
+      yDiv.style.backgroundColor = `${colorValue}`;
+    });
+  });
 }
 
 function removeCanvas() {
@@ -44,13 +52,22 @@ function removeCanvas() {
   yDiv.forEach(function (yDiv) {
     yDiv.remove();
   });
-  xDiv = document.querySelectorAll(".horizontalDivs");
-  xDiv.forEach(function (xDiv) {
-    xDiv.remove();
-  });
-
-  console.log(xDiv);
 }
-slider.addEventListener("mouseup", () => {
+
+generateCanvas(value);
+draw(colorValue);
+
+slider.addEventListener("mousedown", () => {
   removeCanvas();
+});
+
+slider.addEventListener("input", () => {
+  value = slider.value;
+});
+
+slider.addEventListener("mouseup", () => {
+  document.getElementById("colorInput").focus();
+  generateCanvas(value);
+  colorValue = colorPicker.value;
+  draw(colorValue);
 });

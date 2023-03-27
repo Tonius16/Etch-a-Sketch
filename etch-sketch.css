@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   position: fixed;
   top: 0;
@@ -51,38 +55,16 @@ body {
 .newCanvas {
   width: 200px;
   height: 100px;
+  margin-bottom: 30px;
 }
 
 .canvasContainer {
-  display: flex;
-  margin-top: 25px;
+  display: grid;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin-top: 10px;
   margin-right: 200px;
-  width: 1000px;
-  height: 900px;
+  width: 95vh;
+  height: 95vh;
   border: solid black;
-}
-
-.verticalContainer {
-  width: 1000px;
-  height: 900px;
-  display: flex;
-  position: relative;
-}
-
-.horizontalContainer {
-  width: 1000px;
-  height: 900px;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-}
-
-.verticalDivs {
-  flex: 1;
-  border: black solid;
-}
-
-.horizontalDivs {
-  flex: 1;
-  border: black solid;
 }
