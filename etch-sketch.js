@@ -41,15 +41,6 @@ sizeText.style.fontSize = "large";
 sizeText.style.fontWeight = "bold";
 menu.insertBefore(sizeText, menu.children[4]);
 
-tutorialText = document.createElement("a");
-tutorialText.className = "tutorialText";
-tutorialText.style.fontSize = "large";
-tutorialText.style.fontWeight = "bold";
-tutorialText.style.whiteSpace = "pre";
-tutorialText.textContent =
-  "Press and hold the LM\r\nbutton on the cavas\r\nto begin drawing!";
-midScreen.insertBefore(tutorialText, midScreen.firstChild);
-
 function generateCanvas(value) {
   let doubleValue = value * value;
   canvasContainer.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
@@ -74,6 +65,7 @@ function drawing(colorValue) {
 
   yDiv = document.querySelectorAll(".verticalDivs");
   canvasContainer.addEventListener("mousedown", () => {
+    canvasContainer.style.cursor = "url('/imgs/pencil.png'),auto";
     yDiv.forEach(function (yDiv) {
       yDiv.style.pointerEvents = "";
       yDiv.addEventListener("mouseover", () => {
@@ -83,33 +75,12 @@ function drawing(colorValue) {
   });
 }
 
-canvasContainer.addEventListener(
-  "mousedown",
-  () => {
-    tutorialText.textContent = "Release the click\r\nwhen you want to stop";
-  },
-  { once: true }
-);
-
 canvasContainer.addEventListener("mouseup", () => {
+  canvasContainer.style.cursor = "default";
   yDiv.forEach(function (yDiv) {
     yDiv.style.pointerEvents = "none";
   });
 });
-
-canvasContainer.addEventListener(
-  "mouseup",
-  () => {
-    tutorialText.className = "tutorialText";
-    tutorialText.style.fontSize = "large";
-    tutorialText.style.fontWeight = "bold";
-    tutorialText.style.marginTop = "-570px";
-    tutorialText.style.marginLeft = "-200px";
-    tutorialText.textContent =
-      "<<==== Click on the color\r\n  picker to change color!";
-  },
-  { once: true }
-);
 
 function removeCanvas() {
   yDiv = document.querySelectorAll(".verticalDivs");
@@ -138,52 +109,32 @@ slider.addEventListener("mouseup", () => {
   colorValue = colorPicker.value;
 });
 
-slider.addEventListener(
-  "input",
-  () => {
-    tutorialText.className = "tutorialText";
-    tutorialText.style.fontSize = "large";
-    tutorialText.style.fontWeight = "bold";
-    tutorialText.style.marginBottom = "-980px";
-    tutorialText.style.marginLeft = "-200px";
-    tutorialText.textContent =
-      "<<====\r\nClick on the eraser to\r\nerase mistakes!";
-  },
-  { once: true }
-);
-
 colorPicker.addEventListener("input", () => {
   colorValue = colorPicker.value;
 });
 
-colorPicker.addEventListener(
-  "input",
-  () => {
-    tutorialText.className = "tutorialText";
-    tutorialText.style.fontSize = "large";
-    tutorialText.style.fontWeight = "bold";
-    tutorialText.style.marginBottom = "-570px";
-    tutorialText.style.marginLeft = "-200px";
-    tutorialText.textContent =
-      "<<====\r\nMove the slider to change\r\ncanvas size!";
-  },
-  { once: true }
-);
+eraseBttn.addEventListener("click", (event) => {
+  eraseBttn.style.cursor = "url('/imgs/icons8-erase-32.png'),auto";
+  body.style.cursor = "url('/imgs/icons8-erase-32.png'),auto";
+  event.stopPropagation();
+});
 
-eraseBttn.addEventListener("click", () => {
-  tutorialText.className = "tutorialText";
-  tutorialText.style.fontSize = "large";
-  tutorialText.style.fontWeight = "bold";
-  tutorialText.style.marginBottom = "-800px";
-  tutorialText.style.marginLeft = "-200px";
-  tutorialText.textContent =
-    "<<====\r\nClick on the New Canvas Button to\r\n refresh the canvas!";
+body.addEventListener("click", () => {
+  eraseBttn.style.cursor = "default";
+  body.style.cursor = "default";
 });
 
 newCanBttn.addEventListener("mousedown", () => {
   removeCanvas();
 });
 
+newCanBttn.addEventListener(
+  "click",
+  () => {
+    tutorialText.textContent = "";
+  },
+  { once: true }
+);
 newCanBttn.addEventListener("mouseup", () => {
   generateCanvas(value);
 });
