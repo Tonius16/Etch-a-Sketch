@@ -20,6 +20,7 @@ const horizontalContainer = document.getElementById("horizontalContainer");
 const colorPicker = document.getElementById("colorInput");
 const body = document.querySelector("body");
 const midScreen = document.getElementById("midScreen");
+const menu = document.getElementById("menu");
 
 body.ondragstart = () => {
   return false;
@@ -31,7 +32,23 @@ body.addEventListener("mouseup", () => {
   });
 });
 
-let value = 16;
+let value = 70;
+
+sizeText = document.createElement("a");
+sizeText.className = "sizeText";
+sizeText.textContent = `${value} X ${value}`;
+sizeText.style.fontSize = "large";
+sizeText.style.fontWeight = "bold";
+menu.insertBefore(sizeText, menu.children[4]);
+
+tutorialText = document.createElement("a");
+tutorialText.className = "tutorialText";
+tutorialText.style.fontSize = "large";
+tutorialText.style.fontWeight = "bold";
+tutorialText.style.whiteSpace = "pre";
+tutorialText.textContent =
+  "Press and hold the LM\r\nbutton on the cavas\r\nto begin drawing!";
+midScreen.insertBefore(tutorialText, midScreen.firstChild);
 
 function generateCanvas(value) {
   let doubleValue = value * value;
@@ -66,11 +83,33 @@ function drawing(colorValue) {
   });
 }
 
+canvasContainer.addEventListener(
+  "mousedown",
+  () => {
+    tutorialText.textContent = "Release the click\r\nwhen you want to stop";
+  },
+  { once: true }
+);
+
 canvasContainer.addEventListener("mouseup", () => {
   yDiv.forEach(function (yDiv) {
     yDiv.style.pointerEvents = "none";
   });
 });
+
+canvasContainer.addEventListener(
+  "mouseup",
+  () => {
+    tutorialText.className = "tutorialText";
+    tutorialText.style.fontSize = "large";
+    tutorialText.style.fontWeight = "bold";
+    tutorialText.style.marginTop = "-570px";
+    tutorialText.style.marginLeft = "-200px";
+    tutorialText.textContent =
+      "<<==== Click on the color\r\n  picker to change color!";
+  },
+  { once: true }
+);
 
 function removeCanvas() {
   yDiv = document.querySelectorAll(".verticalDivs");
@@ -78,12 +117,6 @@ function removeCanvas() {
     yDiv.remove();
   });
 }
-
-tutorialText = document.createElement("a");
-tutorialText.className = "tutorialText";
-tutorialText.style.whiteSpace = "pre";
-tutorialText.textContent = "Click on the cavas\r\nto begin drawing!";
-midScreen.insertBefore(tutorialText, midScreen.firstChild);
 
 generateCanvas(value);
 drawing(colorValue);
@@ -94,18 +127,57 @@ slider.addEventListener("mousedown", () => {
 
 slider.addEventListener("input", () => {
   value = slider.value;
+  sizeText = document.querySelector(".sizeText");
+  sizeText.textContent = `${value} X ${value}`;
 });
 
 slider.addEventListener("mouseup", () => {
   document.getElementById("colorInput").focus();
-
   generateCanvas(value);
   drawing(colorValue);
   colorValue = colorPicker.value;
 });
 
+slider.addEventListener(
+  "input",
+  () => {
+    tutorialText.className = "tutorialText";
+    tutorialText.style.fontSize = "large";
+    tutorialText.style.fontWeight = "bold";
+    tutorialText.style.marginBottom = "-980px";
+    tutorialText.style.marginLeft = "-200px";
+    tutorialText.textContent =
+      "<<====\r\nClick on the eraser to\r\nerase mistakes!";
+  },
+  { once: true }
+);
+
 colorPicker.addEventListener("input", () => {
   colorValue = colorPicker.value;
+});
+
+colorPicker.addEventListener(
+  "input",
+  () => {
+    tutorialText.className = "tutorialText";
+    tutorialText.style.fontSize = "large";
+    tutorialText.style.fontWeight = "bold";
+    tutorialText.style.marginBottom = "-570px";
+    tutorialText.style.marginLeft = "-200px";
+    tutorialText.textContent =
+      "<<====\r\nMove the slider to change\r\ncanvas size!";
+  },
+  { once: true }
+);
+
+eraseBttn.addEventListener("click", () => {
+  tutorialText.className = "tutorialText";
+  tutorialText.style.fontSize = "large";
+  tutorialText.style.fontWeight = "bold";
+  tutorialText.style.marginBottom = "-800px";
+  tutorialText.style.marginLeft = "-200px";
+  tutorialText.textContent =
+    "<<====\r\nClick on the New Canvas Button to\r\n refresh the canvas!";
 });
 
 newCanBttn.addEventListener("mousedown", () => {

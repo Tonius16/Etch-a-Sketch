@@ -43,6 +43,7 @@ body {
 }
 
 .slider {
+  margin-top: -50px;
   width: 250px;
 }
 
@@ -71,11 +72,6 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 100px;
-}
-
-.tutorialText {
-  font-size: large;
-  font-weight: bold;
 }
 
 .canvasContainer {
