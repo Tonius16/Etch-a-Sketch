@@ -19,6 +19,17 @@ const verticalContainer = document.getElementById("verticalContainer");
 const horizontalContainer = document.getElementById("horizontalContainer");
 const colorPicker = document.getElementById("colorInput");
 const body = document.querySelector("body");
+const midScreen = document.getElementById("midScreen");
+
+body.ondragstart = () => {
+  return false;
+};
+
+body.addEventListener("mouseup", () => {
+  yDiv.forEach(function (yDiv) {
+    yDiv.style.pointerEvents = "none";
+  });
+});
 
 let value = 16;
 
@@ -33,38 +44,33 @@ function generateCanvas(value) {
   }
 }
 
-let colorValue = "#00000";
-
-function draw() {
-  colorValue = colorPicker.value;
-  yDiv = document.querySelectorAll(".verticalDivs");
-  yDiv.forEach(function (yDiv) {
-    yDiv.addEventListener("click", () => {
-      drawing(colorValue);
-    });
-  });
-}
+let colorValue = colorPicker.value;
 
 function drawing(colorValue) {
   colorPicker.addEventListener("input", () => {
     colorValue = colorPicker.value;
   });
-  yDiv = document.querySelectorAll(".verticalDivs");
-  yDiv.forEach(function (yDiv) {
-    yDiv.addEventListener("mousemove", () => {
-      yDiv.style.backgroundColor = `${colorValue}`;
-    });
+  eraseBttn.addEventListener("click", () => {
+    document.getElementById("colorInput").focus();
+    colorValue = "#ffffff";
   });
-  yDiv.forEach(function (yDiv) {
-    yDiv.addEventListener("click", () => {
-      stopColoring();
+
+  yDiv = document.querySelectorAll(".verticalDivs");
+  canvasContainer.addEventListener("mousedown", () => {
+    yDiv.forEach(function (yDiv) {
+      yDiv.style.pointerEvents = "";
+      yDiv.addEventListener("mouseover", () => {
+        yDiv.style.backgroundColor = `${colorValue}`;
+      });
     });
   });
 }
 
-function stopColoring() {
-  canvasContainer.style.pointerEvents = "none";
-}
+canvasContainer.addEventListener("mouseup", () => {
+  yDiv.forEach(function (yDiv) {
+    yDiv.style.pointerEvents = "none";
+  });
+});
 
 function removeCanvas() {
   yDiv = document.querySelectorAll(".verticalDivs");
@@ -73,8 +79,14 @@ function removeCanvas() {
   });
 }
 
+tutorialText = document.createElement("a");
+tutorialText.className = "tutorialText";
+tutorialText.style.whiteSpace = "pre";
+tutorialText.textContent = "Click on the cavas\r\nto begin drawing!";
+midScreen.insertBefore(tutorialText, midScreen.firstChild);
+
 generateCanvas(value);
-draw();
+drawing(colorValue);
 
 slider.addEventListener("mousedown", () => {
   removeCanvas();
@@ -86,15 +98,24 @@ slider.addEventListener("input", () => {
 
 slider.addEventListener("mouseup", () => {
   document.getElementById("colorInput").focus();
-  canvasContainer.style.pointerEvents = "";
+
   generateCanvas(value);
+  drawing(colorValue);
   colorValue = colorPicker.value;
-  draw();
 });
 
 colorPicker.addEventListener("input", () => {
-  canvasContainer.style.pointerEvents = "";
   colorValue = colorPicker.value;
-  console.log(colorValue);
-  draw();
+});
+
+newCanBttn.addEventListener("mousedown", () => {
+  removeCanvas();
+});
+
+newCanBttn.addEventListener("mouseup", () => {
+  generateCanvas(value);
+});
+
+newCanBttn.addEventListener("click", () => {
+  drawing(colorValue);
 });

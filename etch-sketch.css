@@ -22,7 +22,7 @@ body {
 }
 
 .menu {
-  margin-left: 100px;
+  margin-left: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +39,7 @@ body {
 }
 
 .canvasText {
-  margin-bottom: -100px;
+  margin-bottom: -50px;
 }
 
 .slider {
@@ -47,16 +47,35 @@ body {
 }
 
 .erase {
+  font-size: larger;
+  font-weight: bold;
+  background-color: aliceblue;
   margin-top: -20px;
   width: 200px;
   height: 100px;
 }
 
 .newCanvas {
+  font-size: larger;
+  font-weight: bold;
+  background-color: aliceblue;
   width: 200px;
   height: 100px;
   margin-top: -20px;
   margin-bottom: 50px;
+}
+
+.midScreen {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+}
+
+.tutorialText {
+  font-size: large;
+  font-weight: bold;
 }
 
 .canvasContainer {
@@ -64,10 +83,13 @@ body {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   margin-top: 10px;
-  margin-right: 200px;
+  margin-right: 100px;
   width: 95vh;
   height: 95vh;
   background-color: white;
   border: solid black;
   position: relative;
+}
+
+.verticalDivs {
 }
