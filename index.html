@@ -5,29 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="etch-sketch.css" />
+    <link rel="icon" href="./imgs/tabicon.jpg" />
     <script src="etch-sketch.js" defer></script>
     <title>Etch-a-Sketch</title>
   </head>
   <body>
     <div class="menu" id="menu">
       <div class="title" is="title">ETCH-A-SKETCH</div>
-      <h4 class="colorText">Pick A color!</h4>
-      <input id="colorInput" type="color" />
-      <h4 class="canvasText">Chose canvas size</h4>
-      <input
-        type="range"
-        value="70"
-        min="16"
-        max="128"
-        step="4"
-        class="slider"
-        id="myRange"
-        tabindex="-1"
-      />
-      <button class="erase" id="erase">Eraser</button>
-      <button class="newCanvas" id="newCanvas">New Canvas</button>
+      <div class="menuBtm" id="menuBtm">
+        <h4 class="colorText">Pick A color!</h4>
+        <input id="colorInput" type="color" />
+        <h4 class="canvasText">Chose canvas size</h4>
+        <input
+          type="range"
+          value="30"
+          min="16"
+          max="128"
+          step="2"
+          class="slider"
+          id="myRange"
+          tabindex="-1"
+        />
+        <div class="btnMenu">
+          <button class="erase" id="erase">Eraser</button>
+          <button class="newCanvas" id="newCanvas">New Canvas</button>
+          <button class="rainbowBtn" id="rainbowBtn">Rainbow</button>
+        </div>
+      </div>
     </div>
-    <div class="midScreen" id="midScreen"></div>
     <div class="canvasContainer" id="canvasContainer"></div>
   </body>
 </html>
